@@ -33,7 +33,7 @@ export class GroceriesServiceService {
 
   private extractData(res: Response) {
     let body = res;
-    return body || {};
+    return (body || {}) as object[];
   };
 
   private handleError(error: Response | any) {
@@ -45,6 +45,7 @@ export class GroceriesServiceService {
       errMsg = error.message ? error.message : error.toString();
     }
     console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 
   removeItem(id) {
